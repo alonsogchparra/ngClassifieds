@@ -4,13 +4,12 @@
 
     angular
         .module("ngClassifieds")
-        .controller("classifiedsCtrl", function ($scope) {
+        .controller("classifiedsCtrl", function ($scope, $http, classifiedsFactory) {
 
-            $scope.classified = {
-                title: "First Item",
-                price: "$1,000,000",
-                description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aspernatur commodi consequatur consequuntur culpa id, illum incidunt ipsum iusto minima mollitia nisi optio perferendis placeat quas similique voluptas. Placeat?"
-            }
+            classifiedsFactory.getClassifieds().then(function (classifieds) {
+                $scope.classifieds = classifieds.data;
+
+            });
 
         });
 })();
